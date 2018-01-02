@@ -24,6 +24,9 @@
     <ClCompile Include="graph\1C.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="dp\MA.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="keng\注意事项.txt" />
