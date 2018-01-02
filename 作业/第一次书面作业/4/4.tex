@@ -1,0 +1,66 @@
+\documentclass[11pt]{article}
+\usepackage[UTF8]{ctex}
+\usepackage[top=1.5cm, bottom=1.5cm, left=2cm, right=2cm]{geometry}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{amsmath}
+ 
+\floatname{algorithm}{算法}
+ 
+\begin{document}
+\begin{CJK*}{UTF8}{gkai}
+  \begin{algorithm}
+    \caption{判断已完成的蝴蝶分类中是否存在矛盾}
+    \begin{algorithmic}[1]
+      \State $\text{创建无向图 }G$
+      \While{$\text{还有未处理的蝴蝶配对}$}
+        \State $i,j \gets \text{一个未处理的蝴蝶配对中的两只蝴蝶}$
+        \State $\text{将 } i,j \text{ 添加到 } G \text{ 的顶点集中}$
+        \State $\text{将 } (i,j) \text{ 添加到 } G \text{ 的边集中}$
+      \EndWhile \Comment $\text{完成图 } G \text{ 的构建}$
+      \For{$G \text{ 的每个子图 } G_i$} \Comment $\text{图 } G \text{ 可能是由若干个不同的、互不联通的子图组成 }$
+        \State $Visited \gets \text{空集合, } Q \gets \text{空队列}$
+        \State $p \gets G_i \text{ 中任意一节点 }$
+        \State $\text{将 } p \text{ 标记为 A 类, 并分别添加到 } Visited,Q \text{ 中}$
+        \While{$Q \neq \emptyset$}
+          \State $q \gets Q.dequeue()$ \Comment $\text{获得 } Q \text{ 顶部节点并将该节点移出 } Q$
+          \For{$q \text{ 的每个相邻节点 } r_j$}
+            \If{$r_j \text{ 未被标记}$}
+              \If{$\text{朋友们认为 } q \text{ 和 } r_j \text{ 是同类}$}
+                \State $r_j \text{ 获得与 } q \text{ 相同的标记}$
+              \Else
+                \State $r_j \text{ 获得与 } q \text{ 不同的标记}$
+              \EndIf
+            \EndIf
+            \If{$r_j \text{ 不在 } Visited \text{ 中}$}
+              \State $\text{将 } r_j \text{ 分别添加到 } Visited,Q \text{ 中}$
+            \EndIf
+          \EndFor
+        \EndWhile \Comment \text{完成对每个顶点的标记}
+        \For{$G_i \text{ 的每条边 } (u,v)$}
+          \If{$u,v \text{ 的标记相同但判断中认为 } u,v \text{ 属于不同类别}$}
+            \State \Return \text{蝴蝶分类中存在矛盾}
+          \ElsIf{$u,v \text{ 的标记不同但判断中认为 } u,v \text{ 属于相同类别}$}
+            \State \Return \text{蝴蝶分类中存在矛盾} 
+          \EndIf
+        \EndFor
+      \EndFor
+      \State \Return \text{蝴蝶分类中不存在矛盾}
+    \end{algorithmic}
+  \end{algorithm}
+\end{CJK*}
+\end{document}
+
+% \If{$\text{朋友们认为 } q \text{ 和 } r_j \text{ 是同类}$}
+% \State $same \gets true$
+% \Else
+% \State $same \gets false$
+% \EndIf
+% \If{$r_j \text{ 已经被标记}$}
+% \If{$same == true \textbf{ and } q \text{ 和 } r_j \text{ 的标记不同}$}
+%   \State \Return \text{蝴蝶分类中存在矛盾}
+% \ElsIf{$same == false \textbf{ and } q \text{ 和 } r_j \text{ 的标记相同}$}
+%   \State \Return \text{蝴蝶分类中存在矛盾}
+% \EndIf
+% \Else

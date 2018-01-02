@@ -1,0 +1,48 @@
+\documentclass[11pt]{article}
+  \usepackage[UTF8]{ctex}
+  \usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+  \usepackage{algorithm}
+  \usepackage{algorithmicx}
+  \usepackage{algpseudocode}
+  \usepackage{amsmath}
+   
+  \floatname{algorithm}{算法}
+   
+  \begin{document}
+  \begin{CJK*}{UTF8}{gkai}
+    \begin{algorithm}
+      \caption{输出一组可能的生卒顺序或事实错误}
+      \begin{algorithmic}[1]
+        \State $\text{创建有向图 }G$
+        \While{$\text{还有人的生卒日期没有加入图 } G \text{ 中}$}
+          \State $i,j \gets \text{两个在搜集的事实中相关的人，其中至少一位还不在图 } G \text{ 里}$
+          \State $B_i \gets i \text{ 的出生日期, } D_i \gets i \text{ 的死亡日期}$
+          \State $B_j \gets j \text{ 的出生日期, } D_j \gets j \text{ 的死亡日期}$
+          \State $\text{将 } B_i,D_i,B_j,D_j \text{ 添加到 } G \text{ 的顶点集中}$
+          \If{$i \text{ 在 } j \text{ 出生前就死了}$}
+            \State $\text{将 } B_i \to D_i, D_i \to B_j, B_j \to D_j \text{ 添加到 } G \text{ 的边集中}$
+          \ElsIf{$i \text{ 和 } j \text{ 的人生有一部分是重叠的}$}
+            \State $\text{将 } B_i \to D_j, B_j \to D_i \text{ 添加到 } G \text{ 的边集中}$
+          \EndIf
+        \EndWhile \Comment $\text{完成有向图 } G \text{ 的构建}$
+        \State $L \gets \text{空列表, } S \gets \text{空集合}$
+        \State $\text{将 } G \text{ 中所有没有前驱边的节点添加到 } S \text{ 中}$
+        \While{$S \neq \emptyset$}
+          \State $\text{从 } S \text{ 中去除一个顶点 } p$
+          \State $\text{将 } p \text{ 加入到 } L \text{ 末尾}$
+          \For{$\text{每个满足边 } e: p \to q \text{ 存在的顶点 } q$}
+            \State $\text{从 } G \text{ 中删除边 } e$
+            \If{$q \text{ 没有前驱边}$}
+              \State $\text{将 } q \text{ 加入到 } S$
+            \EndIf
+          \EndFor
+        \EndWhile
+        \If{$G \text{ 中还有边}$}
+          \State \Return \text{搜集到的事实中存在错误}
+        \Else
+          \State \Return $L$ \Comment \text{一组可能的生卒顺序}
+        \EndIf
+      \end{algorithmic}
+    \end{algorithm}
+  \end{CJK*}
+  \end{document}
