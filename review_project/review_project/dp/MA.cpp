@@ -1,5 +1,5 @@
 /*
-  二维DP似乎一直都会TLE
+  二维DP会TLE
 */
 
 //#include <iostream>
@@ -56,25 +56,44 @@
 //}
 
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
-int b, l, n;
-int w[1001];
-float s[1001];
-
-float dp(int i) {
-  
-}
-
 int main() {
   ios::sync_with_stdio(false);
+  int w[1002], s[1002];
+  double min_t[1002];
+  int b, n;
+  float l;
   while (cin >> b >> l >> n) {
     if (b == 0 && l == 0 && n == 0) break;
-    for (int i = 0; i < n; i++) {
+    l *= 60.0;
+    for (int i = 1; i <= n; i++) {
       cin >> w[i] >> s[i];
     }
-    cout << dp(n - 1) << endl;
+
+    min_t[0] = 0;
+    for (int i = 1; i <= n; i++) {
+      int min_s = s[i], sum_w = w[i];
+      min_t[i] = min_t[i - 1] + l / min_s;
+      for (int j = i - 1; j >= 1; j--) {
+        sum_w += w[j];
+        if (sum_w > b) break;
+        if (s[j] < min_s) min_s = s[j];
+        double tmp = min_t[j - 1] + l / min_s;
+        if (tmp < min_t[i]) min_t[i] = tmp;
+      }
+    }
+
+    cout << fixed << setprecision(1) << min_t[n] << endl;
   }
   return 0;
 }
+
+/*
+  坑：float值最好不要用==判断相等
+  巨坑：输入数据不要用直接导入float............
+
+  好吧，尽量不要用float！！！！！！！！！！！！！！
+*/
