@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="base\1B.cpp" />
     <ClCompile Include="dp\MA.cpp" />
+    <ClCompile Include="dp\MD.cpp" />
     <ClCompile Include="graph\1C.cpp" />
     <ClCompile Include="graph\1D.cpp" />
   </ItemGroup>
