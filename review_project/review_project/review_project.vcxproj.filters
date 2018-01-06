@@ -36,6 +36,9 @@
     <ClCompile Include="graph\MG.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="base\MC.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="keng\注意事项.txt" />

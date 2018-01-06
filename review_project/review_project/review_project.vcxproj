@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="base\1B.cpp" />
+    <ClCompile Include="base\MC.cpp" />
     <ClCompile Include="divide_conquer\ME.cpp" />
     <ClCompile Include="dp\MA.cpp" />
     <ClCompile Include="dp\MD.cpp" />
