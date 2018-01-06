@@ -25,6 +25,7 @@
     <ClCompile Include="dp\MD.cpp" />
     <ClCompile Include="graph\1C.cpp" />
     <ClCompile Include="graph\1D.cpp" />
+    <ClCompile Include="graph\MG.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="keng\注意事项.txt" />
@@ -99,6 +100,9 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
