@@ -30,6 +30,9 @@
     <ClCompile Include="dp\MD.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="divide_conquer\ME.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="keng\注意事项.txt" />
