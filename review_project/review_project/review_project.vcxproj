@@ -27,6 +27,7 @@
     <ClCompile Include="graph\1C.cpp" />
     <ClCompile Include="graph\1D.cpp" />
     <ClCompile Include="graph\MG.cpp" />
+    <ClCompile Include="network_flow\MF.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="keng\注意事项.txt" />
