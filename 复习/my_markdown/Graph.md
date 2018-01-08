@@ -136,6 +136,24 @@ int spfa(int S, int T) {
 }
 ```
 
+### Floyd
+
+``` C++
+int dis[MAX_NODE][MAX_NODE];
+for (int i = 0; i < node_count; i++)
+  for (int j = 0; j < node_count; j++) 
+  	dis[i][j] = i == j ? 0 : INF;
+ 
+int floyd() {
+  for (int k = 0; k < node_count; k++)
+  	for (int i = 0; i < node_count; i++)
+  	  for (int j = 0; j < node_count; j++)
+  	  	if (dis[i][j] > dis[i][k] + dis[k][j])
+  	  	  dis[i][j] = dis[i][k] + dis[k][j];
+  return dis[0][node_count - 1];
+}
+```
+
 ## 最小生成树
 
 ### Kruskal
